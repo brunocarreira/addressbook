@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Configuration
@@ -22,22 +23,23 @@ public class DataSourceConfiguration {
     String fileName;
 
     @Bean
-    public List<Person> fileDataSource(FileParser fp) throws FileDataSourceException{
-        List<Person> persons;
+    public Datasource<Person> fileDataSource(FileParser fp) throws FileDataSourceException{
+        Datasource<Person> datasource = new Datasource<Person>();
 
         try {
             ClassPathResource res = new ClassPathResource(fileName);
-            persons = fp.getPersonsFromFile(res.getURI());
+            List<Person> persons = fp.getPersonsFromFile(res.getURI());
+            datasource.setAddressBook(persons);
         }
         catch(IOException e){
             //logger.error("Error reading file!");
             throw new FileDataSourceException("Error reading file!");
         }
-        catch(IllegalArgumentException e){
+        catch(IllegalArgumentException|DateTimeParseException e){
             //logger.error("Error parsing file!");
             throw new FileDataSourceException("Error parsing file!");
         }
 
-        return persons;
+        return datasource;
     }
 }

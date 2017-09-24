@@ -8,6 +8,9 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class FileParserTest {
@@ -23,6 +26,12 @@ public class FileParserTest {
     @Test(expected = IOException.class)
     public void shouldThrowIOExceptionFileNotFound() throws IOException {
         ClassPathResource res = new ClassPathResource("AddressBook1");
+        fp.getPersonsFromFile(res.getURI());
+    }
+
+    @Test(expected = DateTimeParseException.class)
+    public void shouldThrowDateTimeParseExceptionInvalidDt() throws IOException {
+        ClassPathResource res = new ClassPathResource("AddressBookInvalidDt");
         fp.getPersonsFromFile(res.getURI());
     }
 
@@ -42,10 +51,10 @@ public class FileParserTest {
 
     @Test
     public void shouldGetFirstBirthDate() throws IOException {
-        DateFormat df = new SimpleDateFormat(Constants.DATE_FORMAT);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT);
         ClassPathResource res = new ClassPathResource("AddressBook");
         List<Person> persons = fp.getPersonsFromFile(res.getURI());
-        Assert.assertTrue("16/03/77".equals(df.format(persons.get(0).getDtBirth())));
+        Assert.assertTrue("16/03/77".equals(persons.get(0).getDtBirth().format(formatter)));
     }
 
 }

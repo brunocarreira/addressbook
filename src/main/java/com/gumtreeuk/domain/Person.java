@@ -1,5 +1,6 @@
 package com.gumtreeuk.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Person {
@@ -8,9 +9,9 @@ public class Person {
 
     private Sex sex;
 
-    private Date dtBirth;
+    private LocalDate dtBirth;
 
-    public Person(String name, Sex sex, Date dtBirth){
+    public Person(String name, Sex sex, LocalDate dtBirth){
         this.name = name;
         this.sex = sex;
         this.dtBirth = dtBirth;
@@ -32,11 +33,11 @@ public class Person {
         this.sex = sex;
     }
 
-    public Date getDtBirth() {
+    public LocalDate getDtBirth() {
         return dtBirth;
     }
 
-    public void setDtBirth(Date dtBirth) {
+    public void setDtBirth(LocalDate dtBirth) {
         this.dtBirth = dtBirth;
     }
 }
