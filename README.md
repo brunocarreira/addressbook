@@ -21,3 +21,4 @@ To run unit tests before running application, type:
 
 ## Usage ##
 
+Point web browser at http://localhost:8080
