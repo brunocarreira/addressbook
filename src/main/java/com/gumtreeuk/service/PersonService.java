@@ -11,6 +11,6 @@ public interface PersonService {
 
     public Optional<Person> getOldestPerson();
 
-    public int getDaysOlder(String nameA, String nameB) throws PersonNotFoundException;
+    public long getDaysOlder(String nameA, String nameB) throws PersonNotFoundException;
 
 }

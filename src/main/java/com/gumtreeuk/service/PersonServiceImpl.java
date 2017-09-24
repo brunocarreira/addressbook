@@ -4,10 +4,12 @@ import com.gumtreeuk.dao.PersonRepository;
 import com.gumtreeuk.domain.Person;
 import com.gumtreeuk.exceptions.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
+@Service
 public class PersonServiceImpl implements PersonService{
 
     @Autowired
@@ -21,10 +23,10 @@ public class PersonServiceImpl implements PersonService{
         return personRepository.getOldestPerson();
     }
 
-    public int getDaysOlder(String nameA, String nameB) throws PersonNotFoundException{
+    public long getDaysOlder(String nameA, String nameB) throws PersonNotFoundException{
         Person personA = personRepository.findByName(nameA);
         Person personB = personRepository.findByName(nameB);
 
-        return Period.between(personA.getDtBirth(), personB.getDtBirth()).getDays();
+        return Math.abs(ChronoUnit.DAYS.between(personA.getDtBirth(), personB.getDtBirth()));
     }
 }

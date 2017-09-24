@@ -39,6 +39,9 @@ public class DataSourceConfiguration {
             //logger.error("Error parsing file!");
             throw new FileDataSourceException("Error parsing file!");
         }
+        catch(Exception e){
+            throw new FileDataSourceException("Invalid File!");
+        }
 
         return datasource;
     }

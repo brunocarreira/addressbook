@@ -17,40 +17,46 @@ public class FileParserTest {
 
     FileParser fp = new FileParser();
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shouldThrowEmptyFile() throws Exception {
+        ClassPathResource res = new ClassPathResource("AddressBookEmpty");
+        fp.getPersonsFromFile(res.getURI());
+    }
+
     @Test(expected = IllegalArgumentException.class)
-    public void shouldThrowIllegalArgumentExceptionWrongSex() throws IOException {
+    public void shouldThrowIllegalArgumentExceptionWrongSex() throws Exception {
         ClassPathResource res = new ClassPathResource("AddressBookWrongSex");
         fp.getPersonsFromFile(res.getURI());
     }
 
     @Test(expected = IOException.class)
-    public void shouldThrowIOExceptionFileNotFound() throws IOException {
+    public void shouldThrowIOExceptionFileNotFound() throws Exception {
         ClassPathResource res = new ClassPathResource("AddressBook1");
         fp.getPersonsFromFile(res.getURI());
     }
 
     @Test(expected = DateTimeParseException.class)
-    public void shouldThrowDateTimeParseExceptionInvalidDt() throws IOException {
+    public void shouldThrowDateTimeParseExceptionInvalidDt() throws Exception {
         ClassPathResource res = new ClassPathResource("AddressBookInvalidDt");
         fp.getPersonsFromFile(res.getURI());
     }
 
     @Test
-    public void shouldGet2PersonsEvenWithMoreAttr() throws IOException {
+    public void shouldGet2PersonsEvenWithMoreAttr() throws Exception {
         ClassPathResource res = new ClassPathResource("AddressBookMoreAttr");
         List<Person> persons = fp.getPersonsFromFile(res.getURI());
         Assert.assertTrue(persons.size() == 2);
     }
 
     @Test
-    public void shouldGet5Persons() throws IOException {
+    public void shouldGet5Persons() throws Exception {
         ClassPathResource res = new ClassPathResource("AddressBook");
         List<Person> persons = fp.getPersonsFromFile(res.getURI());
         Assert.assertTrue(persons.size() == 5);
     }
 
     @Test
-    public void shouldGetFirstBirthDate() throws IOException {
+    public void shouldGetFirstBirthDate() throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT);
         ClassPathResource res = new ClassPathResource("AddressBook");
         List<Person> persons = fp.getPersonsFromFile(res.getURI());

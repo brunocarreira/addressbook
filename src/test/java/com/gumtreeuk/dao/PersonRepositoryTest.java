@@ -34,8 +34,8 @@ public class PersonRepositoryTest {
         MockitoAnnotations.initMocks(this);
 
         List<Person> personList = Arrays.asList(
-                new Person("Name1", Sex.Male, LocalDate.of(85, 1, 15)),
-                new Person("Name2", Sex.Female, LocalDate.of(75, 1, 15))
+                new Person("Name1", Sex.Male, LocalDate.of(1985, 1, 15)),
+                new Person("Name2", Sex.Female, LocalDate.of(1975, 1, 15))
         );
         Mockito.when(datasource.getAddressBook()).thenReturn(personList);
         personRepository = new PersonRepositoryImpl(datasource);
