@@ -5,12 +5,18 @@ import com.gumtreeuk.exceptions.PersonNotFoundException;
 
 import java.util.Optional;
 
+/**
+ * Service responsible for Person functional requirements
+ *
+ * @author Bruno Carreira
+ *
+ */
 public interface PersonService {
 
-    public long getMalesCount();
+    long getMalesCount();
 
-    public Optional<Person> getOldestPerson();
+    Optional<Person> getOldestPerson();
 
-    public long getDaysOlder(String nameA, String nameB) throws PersonNotFoundException;
+    long getDaysOlder(String nameA, String nameB) throws PersonNotFoundException;
 
 }

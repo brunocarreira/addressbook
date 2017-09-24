@@ -6,16 +6,13 @@ import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class FileParserTest {
 
-    FileParser fp = new FileParser();
+    private FileParser fp = new FileParser();
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void shouldThrowEmptyFile() throws Exception {

@@ -6,13 +6,31 @@ import com.gumtreeuk.exceptions.PersonNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * DAO Repository to access Person Data
+ *
+ * @author Bruno Carreira
+ *
+ */
 public interface PersonRepository {
 
-    public List<Person> findAll();
+    /**
+     * Returns all Persons
+     */
+    List<Person> findAll();
 
-    public Person findByName(String name) throws PersonNotFoundException;
+    /**
+     * Returns a Person by name. Throws a customized exception for null/invalid name
+     */
+    Person findByName(String name) throws PersonNotFoundException;
 
-    public long getMalesCount();
+    /**
+     * Returns the number of Males in List
+     */
+    long getMalesCount();
 
-    public Optional<Person> getOldestPerson();
+    /**
+     * Returns the oldest person in List. Optional was used just in case the list is empty.
+     */
+    Optional<Person> getOldestPerson();
 }

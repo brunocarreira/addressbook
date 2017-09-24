@@ -14,6 +14,12 @@ import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
+/**
+ * Datasource Configuration on applicaton startup
+ *
+ * @author Bruno Carreira
+ *
+ */
 @Configuration
 public class DataSourceConfiguration {
 
@@ -22,6 +28,10 @@ public class DataSourceConfiguration {
     @Value("${fileName}")
     String fileName;
 
+    /**
+     * This Bean can be substituted by a JDBC Datasource
+     *
+     */
     @Bean
     public Datasource<Person> fileDataSource(FileParser fp) throws FileDataSourceException{
         Datasource<Person> datasource = new Datasource<Person>();
@@ -36,7 +46,6 @@ public class DataSourceConfiguration {
             throw new FileDataSourceException("Error reading file!");
         }
         catch(IllegalArgumentException|DateTimeParseException e){
-            //logger.error("Error parsing file!");
             throw new FileDataSourceException("Error parsing file!");
         }
         catch(Exception e){

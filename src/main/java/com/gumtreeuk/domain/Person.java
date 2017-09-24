@@ -1,8 +1,13 @@
 package com.gumtreeuk.domain;
 
 import java.time.LocalDate;
-import java.util.Date;
 
+/**
+ * Domain model to represent Person
+ *
+ * @author Bruno Carreira
+ *
+ */
 public class Person {
 
     private String name;

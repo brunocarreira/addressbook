@@ -13,6 +13,12 @@ import java.util.stream.Collectors;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Utility class to parse from file to in-memory data structure
+ *
+ * @author Bruno Carreira
+ *
+ */
 @Component
 public class FileParser {
 
